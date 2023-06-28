@@ -1,0 +1,56 @@
+body {
+    background-image: url("/static/images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.page-home{
+    background-image: url("/static/images/book.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-top: 10%;
+    margin-left:26%;
+    text-align:center;
+    width: 50%;
+    height: 510px;
+}
+
+.btn-outline-primary{
+    width:100%;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+}
+
+.placeholderdate{
+    margin-left:20%;
+}
+
+.register{
+    margin-left: -4%;
+    margin-top: 3%;
+}
+
+.register p{
+    margin-left:2%;
+}
+
+.form-control{
+    margin-left:20%;
+    width:70%
+}
+
+.site2{
+    margin-left: -5%;
+}
+
+.btnunder{
+    width: 70%;
+    margin-left:15%;
+}
+
+p{
+    margin-left:26%;
+}

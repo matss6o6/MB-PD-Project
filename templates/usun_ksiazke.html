@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>Usuń książkę</title>
+</head>
+<body>
+    <h1>Usuń książkę</h1>
+    <p>Czy na pewno chcesz usunąć książkę "{{ book.tytul }}"?</p>
+    <form action="/usun_ksiazke/{{ book.id }}" method="post">
+        <input type="submit" value="Usuń">
+    </form>
+</body>
+</html>

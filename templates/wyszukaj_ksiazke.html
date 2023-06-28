@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='searchbook.css') }}">
+    <title>Wyszukaj książkę</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+
+            <div class="navbar navbar-expand-md navbar-dark bg-dark mb-4" role="navigation">
+                <img class="bookimage" src="/static/images/bookicon.png" alt="">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link " href="/strona_glowna">Strona główna <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dodaj_ksiazke">Dodaj książkę</a>
+                        </li>
+                        <li class="ms-auto">
+
+                        </li>
+                    </ul>
+                    <div class="search ms-auto">
+                        <a href="/wyszukaj_ksiazke" data-toggle="tooltip" data-placement="bottom" title="Wyszukaj książkę"><img  class="profilimage" src="/static/images/search.png" alt="wyszukaj ksiazke"></a>
+                        <a href="/profil" data-toggle="tooltip" data-placement="bottom" title="Panel administratora"><img class="profilimage" src="/static/images/profil3.png" alt="profil uzytkownika"></a>
+                    </div>
+            </div>
+
+    </div>
+</div>
+</div>
+<div class="container-fluid">
+    <div class="row row-cols-2">
+
+        <div class="col-md-6">
+            <form action="{{ url_for('wyszukaj_ksiazke') }}" method="post">
+            
+            <label for="tytul">Tytuł:</label>
+            <input class="form-control" type="text" id="tytul" name="tytul" value="{{ request.form['tytul'] if request.form['tytul'] else '' }}">    
+            <label for="autor">Autor:</label>
+            <input class="form-control" type="text" id="autor" name="autor" value="{{ request.form['autor'] if request.form['autor'] else '' }}">
+        
+            <label for="wydawnictwo">Wydawnictwo:</label>
+            <input class="form-control" type="text" id="wydawnictwo" name="wydawnictwo" value="{{ request.form['wydawnictwo'] if request.form['wydawnictwo'] else '' }}">
+        
+            <label for="seria">Seria:</label>
+            <input class="form-control" type="text" id="seria" name="seria" value="{{ request.form['seria'] if request.form['seria'] else '' }}">
+        
+            <label for="oprawa">Oprawa:</label>
+            <input class="form-control" type="text" id="oprawa" name="oprawa" value="{{ request.form['oprawa'] if request.form['oprawa'] else '' }}">
+        
+        </div>
+        <div class="col-md-6">
+            <label for="rok_wydania">Rok wydania:</label>
+            <input class="form-control" type="text" id="rok_wydania" name="rok_wydania" value="{{ request.form['rok_wydania'] if request.form['rok_wydania'] else '' }}">
+        
+            <label for="ilosc_stron">Ilość stron:</label>
+            <input class="form-control" type="text" id="ilosc_stron" name="ilosc_stron" value="{{ request.form['ilosc_stron'] if request.form['ilosc_stron'] else '' }}">
+        
+            <label for="rzad">Rząd:</label>
+            <input class="form-control" type="text" id="rzad" name="rzad" value="{{ request.form['rzad'] if request.form['rzad'] else '' }}">
+        
+            <label for="regal">Regał:</label>
+            <input class="form-control" type="text" id="regal" name="regal" value="{{ request.form['regal'] if request.form['regal'] else '' }}">
+        
+            <label for="polka">Półka:</label>
+            <input class="form-control mb-3" type="text" id="polka" name="polka" value="{{ request.form['polka'] if request.form['polka'] else '' }}">
+        
+        </div>
+
+        <div class="col-md-6"><button class="btn btn-outline-primary mb-2" type="submit">Wyszukaj</button></div>
+        <div class="col-md-6"> <button class="btn btn-outline-primary mb-2"  type="button" onclick=window.location.href="{{ url_for('wyszukaj_ksiazke') }}">Resetuj wyszukiwanie</button></div>
+       
+    </form>
+    </div>
+              {% if errors %}
+          <div class="alert alert-danger">
+              <ul>
+                  {% for error in errors %}
+                  <li>{{ error }}</li>
+                  {% endfor %}
+              </ul>
+          </div>
+          {% endif %}
+    {% if books %}
+    <h3>Wyniki wyszukiwania:</h3>
+    <table class="table no-wrap user-table mb-5" aria-label="Wyniki wyszukiwania ksiazek">
+        <thead>
+            <tr>
+                <th scope="col" class="border-0 text-uppercase font-medium pl-4">Tytuł</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Autor</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Wydawnictwo</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Seria</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Oprawa</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Rok wydania</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Ilość stron</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Rząd</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Regał</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Półka</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>
+                    <span class="text-muted">{{ book[1] }}</span><br>
+
+                </td>
+
+                <td>
+                    <span class="text-muted">{{ book[2] }}</span><br>
+
+                </td>
+                <td>
+                  <span class="text-muted">{{ book[3] }}</span><br>
+
+              </td>
+                <td>
+                    <span class="text-muted">{{ book[4] }}</span><br>
+
+                </td>
+                <td>
+                    <span class="text-muted">{{ book[5] }}</span><br>
+
+                </td>
+                <td>
+                  <span class="text-muted">{{ book[6] }}</span><br>
+
+              </td>
+              <td>
+                  <span class="text-muted">{{ book[7] }}</span><br>
+
+              </td>
+              <td>
+                  <span class="text-muted">{{ book[8] }}</span><br>
+
+              </td>
+              <td>
+                  <span class="text-muted">{{ book[9] }}</span><br>
+
+              </td>
+                <td>
+                  <span class="text-muted">{{ book[10] }}</span><br>
+                </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Obecnie nie wyszukujesz żadnej książki.</p>
+{% endif %}
+
+</div>     
+

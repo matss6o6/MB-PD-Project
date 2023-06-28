@@ -1,0 +1,42 @@
+body {
+    background-image: url("/static/images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.page-home{
+    background-image: url("/static/images/book.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-top: 20%;
+    margin-left:26%;
+    text-align:center;
+    width: 50%;
+    height: 400px;
+}
+
+.btn-outline-primary{
+    width:100%;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+}
+
+.placeholderdate{
+    margin-left:20%;
+}
+
+.register{
+    margin-left: -4%;
+    margin-top: 3%;
+}
+
+.register p{
+    margin-left:5%;
+}
+
+.error-message {
+    color: red;
+}
